@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine's Game 💕</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 50%, #ffd1ff 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .heart {
+            position: absolute;
+            font-size: 30px;
+            animation: float 6s infinite ease-in-out;
+            opacity: 0.6;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-30px) rotate(10deg);
+            }
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 30px;
+            padding: 50px;
+            box-shadow: 0 20px 60px rgba(255, 105, 180, 0.3);
+            text-align: center;
+            max-width: 600px;
+            width: 90%;
+            position: relative;
+            z-index: 10;
+        }
+
+        h1 {
+            color: #ff1493;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(255, 105, 180, 0.3);
+        }
+
+        .question {
+            font-size: 1.8em;
+            color: #c71585;
+            margin-bottom: 40px;
+            line-height: 1.4;
+        }
+
+        .photo-container {
+            margin: 30px 0;
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .photo-placeholder {
+            width: 150px;
+            height: 150px;
+            border: 3px dashed #ff69b4;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ff69b4;
+            font-size: 0.9em;
+            background: rgba(255, 182, 193, 0.2);
+        }
+
+        .buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        button {
+            background: linear-gradient(135deg, #ff6b9d, #c71585);
+            color: white;
+            border: none;
+            padding: 20px 50px;
+            font-size: 1.3em;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(199, 21, 133, 0.4);
+            font-weight: bold;
+        }
+
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(199, 21, 133, 0.6);
+        }
+
+        button.no-button {
+            background: linear-gradient(135deg, #ffa0c0, #ff69b4);
+            font-size: 1em;
+            padding: 15px 30px;
+        }
+
+        .final-screen {
+            display: none;
+        }
+
+        .final-screen.show {
+            display: block;
+            animation: fadeIn 1s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .celebration {
+            font-size: 3em;
+            margin: 20px 0;
+        }
+
+        .sad-face {
+            font-size: 5em;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating hearts -->
+    <div class="heart" style="left: 10%; top: 20%;">💕</div>
+    <div class="heart" style="left: 80%; top: 30%; animation-delay: 1s;">💖</div>
+    <div class="heart" style="left: 15%; top: 70%; animation-delay: 2s;">💗</div>
+    <div class="heart" style="left: 85%; top: 60%; animation-delay: 1.5s;">💝</div>
+    <div class="heart" style="left: 50%; top: 10%; animation-delay: 0.5s;">💓</div>
+    <div class="heart" style="left: 30%; top: 80%; animation-delay: 2.5s;">💞</div>
+    <div class="heart" style="left: 70%; top: 85%; animation-delay: 3s;">❤️</div>
+
+    <div class="container">
+        <div id="screen1">
+            <h1>💝 A Special Question 💝</h1>
+            <div class="question">Are you Lana Wang?</div>
+            <div class="buttons">
+                <button onclick="nextScreen(2)">Yes</button>
+                <button onclick="nextScreen(2)">Yes</button>
+            </div>
+        </div>
+
+        <div id="screen2" style="display: none;">
+            <h1>✨ I Knew It! ✨</h1>
+            <div class="question">Are you absolutely gorgeous?</div>
+            <div class="buttons">
+                <button onclick="nextScreen(3)">Yes</button>
+                <button onclick="nextScreen(3)">Obviously Yes</button>
+            </div>
+        </div>
+
+        <div id="screen3" style="display: none;">
+            <h1>💫 That's Right! 💫</h1>
+            <div class="question">Are you incredibly smart?</div>
+            <div class="buttons">
+                <button onclick="nextScreen(4)">Yes</button>
+                <button onclick="nextScreen(4)">Definitely Yes</button>
+            </div>
+        </div>
+
+        <div id="screen4" style="display: none;">
+            <h1>🌟 Thought So! 🌟</h1>
+            <div class="question">Are you funny and amazing to be around?</div>
+            <div class="buttons">
+                <button onclick="nextScreen(5)">Yes</button>
+                <button onclick="nextScreen(5)">100% Yes</button>
+            </div>
+        </div>
+
+        <div id="screen5" style="display: none;">
+            <h1>💖 You're Perfect! 💖</h1>
+            <div class="question">Do you have the most beautiful smile?</div>
+            <div class="buttons">
+                <button onclick="nextScreen(6)">Yes</button>
+                <button onclick="nextScreen(6)">Absolutely Yes</button>
+            </div>
+        </div>
+
+        <div id="screen6" style="display: none;">
+            <h1>🌹 Some Memories 🌹</h1>
+           <div class="photo-container">
+       <img src="photo1.jpg" style="width: 150px; height: 150px; border-radius: 15px; object-fit: cover; box-shadow: 0 5px 15px rgba(255, 105, 180, 0.3);">
+       <img src="photo2.jpg" style="width: 150px; height: 150px; border-radius: 15px; object-fit: cover; box-shadow: 0 5px 15px rgba(255, 105, 180, 0.3);">
+       <img src="photo3.jpg" style="width: 150px; height: 150px; border-radius: 15px; object-fit: cover; box-shadow: 0 5px 15px rgba(255, 105, 180, 0.3);">
+   </div>
+            <div class="buttons">
+                <button onclick="nextScreen(7)">Continue 💕</button>
+            </div>
+        </div>
+
+        <div id="screen7" style="display: none;">
+            <h1>💝 The Big Question 💝</h1>
+            <div class="question">Will you be my Valentine?</div>
+            <div class="buttons">
+                <button onclick="showFinal('yes')">YES! 💕</button>
+                <button onclick="showFinal('yes')">Yes! 💖</button>
+                <button class="no-button" onclick="showFinal('no')">No 😢</button>
+            </div>
+        </div>
+
+        <div id="finalYes" class="final-screen">
+            <div class="celebration">🎉💕🎊💖🎉</div>
+            <h1>YESSS!!! 🥳</h1>
+            <div class="question">You just made me the happiest person ever! 💕</div>
+            <div class="celebration">💝✨💗✨💝</div>
+        </div>
+
+        <div id="finalNo" class="final-screen">
+            <div class="sad-face">💔</div>
+            <h1>Oh no... 😢</h1>
+            <div class="question">But... are you sure?</div>
+            <div class="buttons">
+                <button onclick="backToQuestion()">Wait, I changed my mind!</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function nextScreen(screenNum) {
+            // Hide all screens
+            for (let i = 1; i <= 7; i++) {
+                document.getElementById('screen' + i).style.display = 'none';
+            }
+            // Show the requested screen
+            document.getElementById('screen' + screenNum).style.display = 'block';
+        }
+
+        function showFinal(response) {
+            // Hide screen 7
+            document.getElementById('screen7').style.display = 'none';
+            
+            if (response === 'yes') {
+                document.getElementById('finalYes').classList.add('show');
+                // Create confetti effect
+                createConfetti();
+            } else {
+                document.getElementById('finalNo').classList.add('show');
+            }
+        }
+
+        function backToQuestion() {
+            document.getElementById('finalNo').classList.remove('show');
+            document.getElementById('screen7').style.display = 'block';
+        }
+
+        function createConfetti() {
+            const colors = ['#ff69b4', '#ff1493', '#c71585', '#ffc0cb', '#ffb6c1'];
+            for (let i = 0; i < 50; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.innerHTML = '💕';
+                    confetti.style.position = 'fixed';
+                    confetti.style.left = Math.random() * 100 + '%';
+                    confetti.style.top = '-50px';
+                    confetti.style.fontSize = (Math.random() * 20 + 20) + 'px';
+                    confetti.style.animation = `fall ${Math.random() * 3 + 2}s linear`;
+                    confetti.style.zIndex = '1000';
+                    document.body.appendChild(confetti);
+
+                    setTimeout(() => confetti.remove(), 5000);
+                }, i * 100);
+            }
+        }
+
+        // Add fall animation for confetti
+        const style = document.createElement('style');
+        style.innerHTML = `
+            @keyframes fall {
+                to {
+                    transform: translateY(100vh) rotate(360deg);
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
